@@ -1,0 +1,130 @@
+<!--Escribir un script que simule el lanzamiento de dos dados. Hacer uso de la función
+Math.random para obtener números aleatorios entre 1 y 6 para cada uno de los
+lanzamientos de los dados. Sumar el resultado de lanzar dos dados y anotar en
+un array el número de apariciones de dicha suma, repitiendo 36.000 veces esta
+operación.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .btnDados{
+            background-color: blue;
+            color: white;
+            height: 100px;
+            width: 600px;
+            font-size: 60px;
+            border-radius: 20px;
+            border-color: white;
+        }
+
+        .principal {
+        width:600px;
+        background:black;
+        border-color: white;
+        height:100px;
+        display:flex;
+        flex-wrap:nowrap;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+        text-align:center;
+        border-radius: 20px;
+        }
+
+        #num1 {
+        background:white;
+        border-radius: 8px;
+        width:80px;
+        height:80px;
+        }
+
+        #simboloSuma {
+        background:black;
+        width:80px;
+        height:80px;
+        border-radius: 30px;
+        color:white;
+        }
+        #num2 {
+        background:white;
+        border-radius: 8px;
+        width:80px;
+        height:80px;
+        }
+        #simboloIgual {
+        background:black;
+        width:80px;
+        height:80px;
+        border-radius: 30px;
+        color:white;
+        }
+
+        #total {
+        background:white;
+        border-radius: 8px;
+        width:80px;
+        height:80px;
+        }
+
+    </style>
+    <script>
+        function Lanzamiento(x, y) { 
+            
+            function Cretable() {
+                
+                body = document.getElementById("tabla");
+                tabla   = document.createElement("table");
+            
+                for (var f = 0; f < 1; f++) {
+                filas = document.createElement("tr");
+            
+                    for (var c = 0; c < 36000; c++) {
+                        table = [];
+                        x = Math.floor(Math.random()*(5+1)+1);
+                        y = Math.floor(Math.random()*(5+1)+1);
+                        suma = x + y
+                        table.push(suma);
+                    
+                        celda = document.createElement("td");
+                        textcel = document.createTextNode(table);
+                        celda.appendChild(textcel);
+                        filas.appendChild(celda);
+                            
+                    }
+
+                    tabla.appendChild(filas);
+                }
+            
+                document.getElementById("num1").innerHTML= x;
+                document.getElementById("num2").innerHTML= y;
+                document.getElementById("total").innerHTML= suma;
+                body.appendChild(tabla);
+                tabla.setAttribute("border", "2");
+            }
+
+            Cretable();
+        } 
+    </script>
+</head>
+<body>
+    <button type="button" class="btnDados" onclick="Lanzamiento()">Lanzar Dados</button>
+    </br></br>
+
+    <div class="principal">
+    <div id="num1"></div>
+    <div id="simboloSuma">+</div>
+    <div id="num2"></div>
+    <div id="simboloIgual">=</div>
+    <div id="total"></div>
+    </div>
+    
+    </br></br>
+    <div id="tabla"></div>
+</body>
+</html>
